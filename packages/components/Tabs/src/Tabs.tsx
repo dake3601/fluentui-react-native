@@ -3,6 +3,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Text } from '@fluentui-react-native/text';
 import { FocusZone } from '@fluentui-react-native/focus-zone';
+import { Stack } from '@fluentui-react-native/stack';
 import { tabsName, TabsType, TabsProps, TabsState, TabsSlotProps, TabsRenderData, ITabsContext } from './Tabs.types';
 import { compose, IUseComposeStyling } from '@uifabricshared/foundation-compose';
 import { ISlots, withSlots } from '@uifabricshared/foundation-composable';
@@ -95,7 +96,7 @@ export const Tabs = compose<TabsType>({
 
   settings,
   slots: {
-    root: View,
+    root: Stack,
     label: Text,
     container: FocusZone,
   },

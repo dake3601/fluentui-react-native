@@ -31,20 +31,7 @@ export const settings: IComposeSettings<TabsItemType> = [
       },
     },
     button: {
-      style: {
-        backgroundColor: 'transparent',
-        width: radioButtonSize,
-        height: radioButtonSize,
-        top: 0,
-        left: 0,
-        borderWidth: 1,
-        borderStyle: 'solid',
-        borderRadius: radioButtonRadius,
-        marginTop: 4,
-        marginRight: 6,
-        marginBottom: 6,
-        marginLeft: 6,
-      },
+      style: {},
     },
     innerCircle: {
       style: {

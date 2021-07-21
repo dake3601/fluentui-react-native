@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { Text } from '@fluentui-react-native/text';
 import { tabsItemName, TabsItemType, TabsItemProps, TabsItemSlotProps, TabsItemRenderData } from './TabsItem.types';
 import { compose, IUseComposeStyling } from '@uifabricshared/foundation-compose';
-import { filterViewProps } from '@fluentui-react-native/adapters';
+import { Button } from '@fluentui-react-native/button';
 import { ISlots, withSlots } from '@uifabricshared/foundation-composable';
 import { settings, tabsItemSelectActionLabel } from './TabsItem.settings';
 import { mergeSettings } from '@uifabricshared/foundation-settings';
@@ -94,10 +94,7 @@ export const TabsItem = compose<TabsItemType>({
   render: (Slots: ISlots<TabsItemSlotProps>, _renderData: TabsItemRenderData, ...children: React.ReactNode[]) => {
     return (
       <Slots.root>
-        <Slots.button>
-          <Slots.innerCircle />
-        </Slots.button>
-        <Slots.content />
+        <Slots.button />
         {children}
       </Slots.root>
     );
@@ -106,8 +103,7 @@ export const TabsItem = compose<TabsItemType>({
   settings,
   slots: {
     root: View,
-    button: { slotType: View, filter: filterViewProps },
-    innerCircle: { slotType: View, filter: filterViewProps },
+    button: Button,
     content: Text,
   },
   styles: {
