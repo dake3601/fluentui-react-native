@@ -75,7 +75,6 @@ export const TabsItem = compose<TabsItemType>({
       button: {
         content: headerText,
         icon: icon,
-<<<<<<< HEAD
         onClick: () => {
           console.log('CLICKED');
         },
@@ -83,9 +82,6 @@ export const TabsItem = compose<TabsItemType>({
           console.log('ON FOCUS');
         },
       },
-=======
-      }
->>>>>>> fb6c50995d01755fa8ecfede049ba64bfccb203e
     });
 
     return { slotProps };
