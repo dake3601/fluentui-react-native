@@ -10,10 +10,9 @@ export const tabsItemName = 'TabsItem';
 // Props for the radio button
 export interface TabsItemProps extends IButtonProps {
   /*
-   ** The text string for the option
+   ** The text string for the tab
    */
   content: string;
-
   /*
    ** A unique key-identifier for each option
    */
