@@ -9,15 +9,14 @@ import { ISlots, withSlots } from '@uifabricshared/foundation-composable';
 import { settings, tabsItemSelectActionLabel } from './TabsItem.settings';
 import { mergeSettings } from '@uifabricshared/foundation-settings';
 import { borderTokens } from '@fluentui-react-native/tokens';
-import { useViewCommandFocus } from '@fluentui-react-native/interactive-hooks';
 import { TabsContext } from './Tabs';
+import { useAsPressable, useOnPressWithFocus, useViewCommandFocus } from '@fluentui-react-native/interactive-hooks';
 
 export const TabsItem = compose<TabsItemType>({
   displayName: tabsItemName,
 
   usePrepareProps: (userProps: TabsItemProps, useStyling: IUseComposeStyling<TabsItemType>) => {
     const { headerText, icon, buttonKey, disabled, ariaLabel, componentRef = React.useRef(null), ...rest } = userProps;
-    console.log(icon);
 
     // Grabs the context information from RadioGroup (currently selected button and client's onChange callback)
     const info = React.useContext(TabsContext);
@@ -69,13 +68,19 @@ export const TabsItem = compose<TabsItemType>({
         accessibilityLabel: ariaLabel ? ariaLabel : headerText,
         accessibilityState: { disabled: state.disabled, selected: state.selected },
         accessibilityActions: [{ name: 'Select', label: tabsItemSelectActionLabel }],
-        accessibilityPositionInSet: info.buttonKeys.findIndex((x) => x == buttonKey) + 1,
+        accessibilityPositionInSet: info.buttonKeys.findIndex((x) => x == buttonKey) + 1, // ex functionality -> narrator announces 1 of 3 (might only work on win32)
         accessibilitySetSize: info.buttonKeys.length,
         onAccessibilityAction: onAccessibilityAction,
       },
       button: {
         content: headerText,
         icon: icon,
+        onClick: () => {
+          console.log('CLICKED');
+        },
+        onFocus: () => {
+          console.log('ON FOCUS');
+        },
       },
     });
 
