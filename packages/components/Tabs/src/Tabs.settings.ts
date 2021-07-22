@@ -9,17 +9,18 @@ export const settings: IComposeSettings<TabsType> = [
     root: {
       accessible: true,
       accessibilityRole: 'tablist',
-      style: {
-        display: 'flex',
-        alignItems: 'flex-start',
-        flexDirection: 'row',
-      },
+      style: {},
     },
     label: {
       style: {
         fontFamily: 'inherit',
         fontSize: 16,
         fontWeight: '600',
+      },
+    },
+    container: {
+      style: {
+        flexDirection: 'row',
       },
     },
   },

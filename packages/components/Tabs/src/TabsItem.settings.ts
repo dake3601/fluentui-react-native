@@ -15,14 +15,7 @@ export const settings: IComposeSettings<TabsItemType> = [
       accessible: true,
       focusable: true,
       accessibilityRole: 'tab',
-      style: {
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'row',
-        minHeight: 20,
-        marginTop: 0,
-        position: 'relative',
-      },
+      style: {},
     },
     button: {
       style: {},
