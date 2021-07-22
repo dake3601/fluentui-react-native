@@ -4,13 +4,20 @@ import { Stack } from '@fluentui-react-native/stack';
 import { stackStyle } from '../Common/styles';
 import { TABS_TESTPAGE } from './consts';
 import { Test, TestSection, PlatformStatus } from '../Test';
+import TestSvg from './test.svg';
+import { SvgIconProps } from '@fluentui-react-native/icon';
+
+const svgProps: SvgIconProps = {
+  src: TestSvg,
+  viewBox: '0 0 500 500',
+};
 
 const tabs: React.FunctionComponent<{}> = () => {
   return (
     <Stack style={stackStyle}>
       <Tabs label="Tabs">
-        <TabsItem content="Option A" buttonKey="A" />
-        <TabsItem content="Option B" buttonKey="B" />
+        <TabsItem icon={{ svgSource: svgProps, width: 20, height: 20, color: 'red' }} headerText="Option A" buttonKey="A" />
+        <TabsItem headerText="Option B" buttonKey="B" />
       </Tabs>
     </Stack>
   );

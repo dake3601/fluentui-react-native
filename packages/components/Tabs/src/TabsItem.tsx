@@ -16,7 +16,8 @@ export const TabsItem = compose<TabsItemType>({
   displayName: tabsItemName,
 
   usePrepareProps: (userProps: TabsItemProps, useStyling: IUseComposeStyling<TabsItemType>) => {
-    const { content, buttonKey, disabled, ariaLabel, componentRef = React.useRef(null), ...rest } = userProps;
+    const { headerText, icon, buttonKey, disabled, ariaLabel, componentRef = React.useRef(null), ...rest } = userProps;
+    console.log(icon);
 
     // Grabs the context information from RadioGroup (currently selected button and client's onChange callback)
     const info = React.useContext(TabsContext);
@@ -65,7 +66,7 @@ export const TabsItem = compose<TabsItemType>({
         ...rest,
         ref: buttonRef,
         accessibilityRole: 'tab',
-        accessibilityLabel: ariaLabel ? ariaLabel : content,
+        accessibilityLabel: ariaLabel ? ariaLabel : headerText,
         accessibilityState: { disabled: state.disabled, selected: state.selected },
         accessibilityActions: [{ name: 'Select', label: tabsItemSelectActionLabel }],
         accessibilityPositionInSet: info.buttonKeys.findIndex((x) => x == buttonKey) + 1,
@@ -73,9 +74,9 @@ export const TabsItem = compose<TabsItemType>({
         onAccessibilityAction: onAccessibilityAction,
       },
       button: {
-        content: content,
+        content: headerText,
+        icon: icon,
       },
-      content: { children: content },
     });
 
     return { slotProps };
