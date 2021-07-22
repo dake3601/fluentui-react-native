@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Alert } from 'react-native';
 import { Tabs, TabsItem } from '@fluentui/react-native';
 import { Stack } from '@fluentui-react-native/stack';
 import { stackStyle } from '../Common/styles';
@@ -13,6 +14,10 @@ const svgProps: SvgIconProps = {
 };
 
 const tabs: React.FunctionComponent<{}> = () => {
+  const onTabsClick = (key: string) => {
+    Alert.alert('Alert.', key + ' works');
+  };
+
   return (
     <Stack style={stackStyle}>
       <Tabs label="Tabs">

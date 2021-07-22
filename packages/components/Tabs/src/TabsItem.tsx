@@ -18,15 +18,15 @@ export const TabsItem = compose<TabsItemType>({
   usePrepareProps: (userProps: TabsItemProps, useStyling: IUseComposeStyling<TabsItemType>) => {
     const { headerText, icon, buttonKey, disabled, ariaLabel, componentRef = React.useRef(null), ...rest } = userProps;
 
-    // Grabs the context information from RadioGroup (currently selected button and client's onChange callback)
+    // Grabs the context information from RadioGroup (currently selected button and client's onTabsClick callback)
     const info = React.useContext(TabsContext);
 
     const buttonRef = useViewCommandFocus(componentRef);
 
-    /* We don't want to call the user's onChange multiple times on the same selection. */
+    /* We don't want to call the user's onTabsClick multiple times on the same selection. */
     const changeSelection = () => {
       if (buttonKey != info.selectedKey) {
-        info.onChange && info.onChange(buttonKey);
+        info.onTabsClick && info.onTabsClick(buttonKey);
         info.updateSelectedButtonRef && componentRef && info.updateSelectedButtonRef(componentRef);
       }
     };
@@ -75,6 +75,7 @@ export const TabsItem = compose<TabsItemType>({
       button: {
         content: headerText,
         icon: icon,
+<<<<<<< HEAD
         onClick: () => {
           console.log('CLICKED');
         },
@@ -82,6 +83,9 @@ export const TabsItem = compose<TabsItemType>({
           console.log('ON FOCUS');
         },
       },
+=======
+      }
+>>>>>>> fb6c50995d01755fa8ecfede049ba64bfccb203e
     });
 
     return { slotProps };
