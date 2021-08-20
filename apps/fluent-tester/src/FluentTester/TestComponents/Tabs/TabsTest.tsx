@@ -10,13 +10,13 @@ const tabs: React.FunctionComponent = () => {
   return (
     <View style={stackStyle}>
       <Tabs label="Tabs">
-        <TabsItem headerText="Home" itemKey="A">
+        <TabsItem headerText="Home">
           <Text>Tabs #1</Text>
         </TabsItem>
-        <TabsItem headerText="Files" itemKey="B">
+        <TabsItem headerText="Files">
           <Text>Tabs #2</Text>
         </TabsItem>
-        <TabsItem headerText="Settings" itemKey="C">
+        <TabsItem headerText="Settings">
           <Text>Tabs #3</Text>
         </TabsItem>
       </Tabs>
@@ -28,13 +28,13 @@ const disabledTabs: React.FunctionComponent = () => {
   return (
     <View style={stackStyle}>
       <Tabs label="Tabs">
-        <TabsItem headerText="Home" itemKey="A">
+        <TabsItem headerText="Home">
           <Text>Tabs #1</Text>
         </TabsItem>
-        <TabsItem headerText="Files" itemKey="B" disabled={true}>
+        <TabsItem headerText="Files" disabled={true}>
           <Text>Tabs #2</Text>
         </TabsItem>
-        <TabsItem headerText="Settings" itemKey="C">
+        <TabsItem headerText="Settings">
           <Text>Tabs #3</Text>
         </TabsItem>
       </Tabs>
@@ -70,7 +70,7 @@ const tabsCountIcon: React.FunctionComponent = () => {
 };
 
 const onTabsClickEvent: React.FunctionComponent = () => {
-  const [selectedKey, setSelectedKey] = React.useState('home_key');
+  const [selectedKey, setSelectedKey] = React.useState('1');
 
   const onTabsClick = (key: string) => {
     setSelectedKey(key);
@@ -80,13 +80,13 @@ const onTabsClickEvent: React.FunctionComponent = () => {
     <View style={stackStyle}>
       <Text>Last onTabsClick from: {selectedKey}</Text>
       <Tabs label="Tabs" onTabsClick={onTabsClick} selectedKey={selectedKey}>
-        <TabsItem headerText="Home" itemKey="home_key">
+        <TabsItem headerText="Home">
           <Text>Tabs #1</Text>
         </TabsItem>
-        <TabsItem headerText="Files" itemKey="files_key">
+        <TabsItem headerText="Files">
           <Text>Tabs #2</Text>
         </TabsItem>
-        <TabsItem headerText="Settings" itemKey="settings_key">
+        <TabsItem headerText="Settings">
           <Text>Tabs #3</Text>
         </TabsItem>
       </Tabs>

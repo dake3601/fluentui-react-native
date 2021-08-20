@@ -25,6 +25,7 @@ export const TabsContext = React.createContext<TabsContextData>({
   },
   tabsItemKeys: [],
   views: null,
+  index: 0,
 });
 
 export const Tabs = compose<TabsType>({
@@ -74,6 +75,7 @@ export const Tabs = compose<TabsType>({
         getTabId: onChangeTabId,
         updateSelectedTabsItemRef: onSelectTabsItemRef,
         views: map,
+        index: 1,
       },
       info: {
         headersOnly: headersOnly ?? false,
@@ -99,15 +101,17 @@ export const Tabs = compose<TabsType>({
 
     // Populate the tabsItemKeys array.
     if (children) {
+      let count = 1
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore - TODO, fix typing error
       renderData.state.context.tabsItemKeys = React.Children.map(children, (child: React.ReactChild) => {
         if (React.isValidElement(child)) {
+          const itemKey = child.props.itemKey === undefined ? `${count++}` : child.props.itemKey
           // Sets default selected tabItem.
           if (renderData.state.context.selectedKey == null && !child.props.disabled) {
-            renderData.state.context.selectedKey = child.props.itemKey;
+            renderData.state.context.selectedKey = itemKey;
           }
-          return child.props.itemKey;
+          return itemKey;
         }
       });
     }

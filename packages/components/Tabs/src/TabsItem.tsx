@@ -29,12 +29,13 @@ export const TabsItem = compose<TabsItemType>({
       accessibilityLabel = userProps.headerText,
       componentRef = defaultComponentRef,
       testID,
-      itemKey,
       itemCount,
       accessibilityPosInSet,
       accessibilitySetSize,
       ...rest
     } = userProps;
+
+    const [itemKey, setState] = React.useState(userProps.itemKey);
 
     // Grabs the context information from Tabs (currently selected TabsItem and client's onTabsClick callback).
     const info = React.useContext(TabsContext);
@@ -63,9 +64,9 @@ export const TabsItem = compose<TabsItemType>({
     const state: TabsItemState = {
       info: {
         ...pressable.state,
-        selected: info.selectedKey === userProps.itemKey,
+        selected: info.selectedKey === itemKey,
         icon: !!icon,
-        key: itemKey,
+        key: itemKey === undefined ? `${info.index++}` : itemKey,
         headerText: !!headerText || itemCount !== undefined,
       },
     };
@@ -76,6 +77,9 @@ export const TabsItem = compose<TabsItemType>({
     element in Tabs. Since the componentRef isn't generated until after initial render,
     we must update it once here. */
     React.useEffect(() => {
+      if (itemKey === undefined) {
+        setState(state.info.key);
+      }
       if (itemKey == info.selectedKey) {
         info.updateSelectedTabsItemRef && componentRef && info.updateSelectedTabsItemRef(componentRef);
       }

@@ -50,7 +50,7 @@ export interface TabsItemProps extends IPressableProps {
   /*
    ** A unique key-identifier for each option.
    */
-  itemKey: string;
+  itemKey?: string;
 
   /*
    ** Whether or not the tabs item is selectable.
