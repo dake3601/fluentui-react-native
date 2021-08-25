@@ -16,7 +16,6 @@ export const settings: IComposeSettings<TabsItemType> = [
     root: {
       accessible: true,
       focusable: false,
-      accessibilityRole: 'tab',
       style: {
         display: 'flex',
         alignItems: 'center',

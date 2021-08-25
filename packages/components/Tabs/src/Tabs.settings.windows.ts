@@ -11,7 +11,6 @@ export const settings: IComposeSettings<TabsType> = [
     },
     root: {
       accessible: true,
-      accessibilityRole: 'tablist',
       style: {
         marginLeft: 10,
       },

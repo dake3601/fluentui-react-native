@@ -106,15 +106,13 @@ export const TabsItem = compose<TabsItemType>({
         ...rest,
         ...pressable.props,
         ref: buttonRef,
-        accessibilityRole: 'tab',
+        accessibilityRole: 'listitem',
         accessibilityLabel: accessibilityLabel,
-        accessibilityState: { disabled: userProps.disabled, selected: info.selectedKey === userProps.itemKey },
-        accessibilityActions: [{ name: 'Select', label: tabsItemSelectActionLabel }],
+        accessibilityState: { selected: info.selectedKey === userProps.itemKey },
         accessibilityPositionInSet: accessibilityPositionInSet ?? info.tabsItemKeys.findIndex(x => x == itemKey) + 1,
         accessibilitySetSize: accessibilitySetSize ?? info.tabsItemKeys.length,
-        onAccessibilityAction: onAccessibilityAction,
       },
-      content: { children: headerText + countText, testID: testID },
+      content: { children: info.selectedKey === userProps.itemKey ? 'true' : 'false', testID: testID },
       icon: createIconProps(icon),
     });
 
