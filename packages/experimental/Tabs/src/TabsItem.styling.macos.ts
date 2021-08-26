@@ -1,6 +1,7 @@
 import { tabsItemName, TabsItemTokens, TabsItemSlotProps, TabsItemProps } from './TabsItem.types';
 import { Theme, UseStylingOptions, buildProps } from '@fluentui-react-native/framework';
 import { borderStyles, fontStyles } from '@fluentui-react-native/tokens';
+import { IComposeSettings } from '@uifabricshared/foundation-compose';
 import { TokenSettings } from '@fluentui-react-native/use-styling';
 
 export const tabsItemStates: (keyof TabsItemTokens)[] = ['hovered', 'selected', 'focused', 'disabled', 'pressed'];
@@ -12,6 +13,7 @@ export const defaultTabsItemTokens: TokenSettings<TabsItemTokens, Theme> = (t: T
     borderColor: 'transparent',
     iconColor: t.colors.buttonIcon,
     indicatorColor: t.colors.transparent,
+    marginHorizontal: 10,
     variant: 'bodyStandard',
     minHeight: 32,
     minWidth: 80,
@@ -30,6 +32,9 @@ export const defaultTabsItemTokens: TokenSettings<TabsItemTokens, Theme> = (t: T
       iconColor: t.colors.buttonHoveredIcon,
       color: t.colors.neutralForeground2Hover,
       indicatorColor: t.colors.neutralStroke1,
+      selected: {
+        marginHorizontal: -1,
+      },
     },
     pressed: {
       color: t.colors.neutralForeground2Pressed,
@@ -39,7 +44,6 @@ export const defaultTabsItemTokens: TokenSettings<TabsItemTokens, Theme> = (t: T
     },
     focused: {
       color: t.colors.neutralForeground1,
-      borderColor: t.colors.neutralForeground1,
       icon: t.colors.buttonFocusedIcon,
       borderWidth: 2,
       borderRadius: 4,
@@ -47,8 +51,7 @@ export const defaultTabsItemTokens: TokenSettings<TabsItemTokens, Theme> = (t: T
     selected: {
       color: t.colors.neutralForeground1,
       icon: t.colors.buttonFocusedIcon,
-      indicatorColor: t.colors.brandStroke1,
-      borderColor: 'transparent',
+      indicatorColor: 'lightblue',
       variant: 'bodySemibold',
       iconColor: t.colors.buttonDisabledIcon,
     },
@@ -111,7 +114,7 @@ export const stylingSettings: UseStylingOptions<TabsItemProps, TabsItemSlotProps
           borderRadius: 2,
           marginBottom: 2,
           alignSelf: 'stretch',
-          marginHorizontal: 10,
+          marginHorizontal: tokens.marginHorizontal,
           backgroundColor: tokens.indicatorColor,
         },
       }),
