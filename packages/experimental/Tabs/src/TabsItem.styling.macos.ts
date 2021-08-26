@@ -51,7 +51,7 @@ export const defaultTabsItemTokens: TokenSettings<TabsItemTokens, Theme> = (t: T
     selected: {
       color: t.colors.neutralForeground1,
       icon: t.colors.buttonFocusedIcon,
-      indicatorColor: 'lightblue',
+      indicatorColor: t.colors.accentButtonBackground,
       variant: 'bodySemibold',
       iconColor: t.colors.buttonDisabledIcon,
     },
