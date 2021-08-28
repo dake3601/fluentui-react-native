@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { useSelectedKey } from '@fluentui-react-native/interactive-hooks';
 import { TabsProps, TabsState } from './Tabs.types';
 
@@ -37,6 +37,7 @@ export const useTabs = (props: TabsProps): TabsState => {
   return {
     props: {
       ...props,
+      focusable: !(Platform.OS === 'windows') ?? true,
       accessible: true,
       accessibilityRole: 'tablist',
       ref: componentRef,

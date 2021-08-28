@@ -80,6 +80,14 @@ export const Tabs = compose<TabsType>({
             return child.props.itemKey;
           }
         });
+
+        tabs.state.context.enabledKeys = React.Children.map(children, (child: React.ReactChild) => {
+          if (React.isValidElement(child)) {
+            if (!child.props.disabled) {
+              return child.props.itemKey;
+            }
+          }
+        });
       }
 
       const containerProps = Platform.OS === 'windows' ? {defaultTabbableElement: defaultTabbableElement, isCircularNavigation: isCircularNavigation}: {};
