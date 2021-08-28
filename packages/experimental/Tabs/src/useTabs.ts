@@ -32,6 +32,7 @@ export const useTabs = (props: TabsProps): TabsState => {
 
   // Stores views to be displayed
   const map = new Map<string, React.ReactNode[]>();
+  const focusZoneRef = React.useRef(null);
 
   return {
     props: {
@@ -49,10 +50,12 @@ export const useTabs = (props: TabsProps): TabsState => {
         getTabId: onChangeTabId,
         updateSelectedTabsItemRef: onSelectTabsItemRef,
         views: map,
+        focusZoneRef: focusZoneRef,
       },
       info: {
         headersOnly: props.headersOnly ?? false,
         label: !!props.label,
+        onKeySelect: data.onKeySelect,
       },
     },
   };

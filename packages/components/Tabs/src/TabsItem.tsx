@@ -1,6 +1,6 @@
 /** @jsx withSlots */
 import * as React from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { compose, IUseComposeStyling } from '@uifabricshared/foundation-compose';
 import { ISlots, withSlots } from '@uifabricshared/foundation-composable';
 import { Text } from '@fluentui-react-native/text';
@@ -43,6 +43,9 @@ export const TabsItem = compose<TabsItemType>({
     We check that there is an actual change in selection before forwarding the message to the user callback
     so that they aren't notified more than once for each click. */
     const changeSelection = () => {
+      if (Platform.OS === 'windows') {
+        info.focusZoneRef.current.focus();
+      }
       if (itemKey != info.selectedKey) {
         info.onTabsClick && info.onTabsClick(itemKey);
         info.getTabId && info.getTabId(itemKey, info.tabsItemKeys.findIndex(x => x == itemKey) + 1);
@@ -64,7 +67,7 @@ export const TabsItem = compose<TabsItemType>({
       info: {
         ...pressable.state,
         selected: info.selectedKey === userProps.itemKey,
-        icon: !!icon,
+        icon: !!icon && Platform.OS !== 'windows', // Icons are on backlog for windows
         key: itemKey,
         headerText: !!headerText || itemCount !== undefined,
       },

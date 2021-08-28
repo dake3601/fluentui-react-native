@@ -1,6 +1,6 @@
 /** @jsx withSlots */
 import * as React from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { Text } from '@fluentui-react-native/text';
 import { FocusZone } from '@fluentui-react-native/focus-zone';
 import { tabsName, TabsType, TabsProps, TabsState, TabsSlotProps, TabsRenderData, TabsContextData } from './Tabs.types';
@@ -10,7 +10,8 @@ import { settings } from './Tabs.settings';
 import { mergeSettings } from '@uifabricshared/foundation-settings';
 import { filterViewProps } from '@fluentui-react-native/adapters';
 import { foregroundColorTokens, textTokens, backgroundColorTokens } from '@fluentui-react-native/tokens';
-import { useSelectedKey } from '@fluentui-react-native/interactive-hooks';
+import { useSelectedKey, useAsPressable } from '@fluentui-react-native/interactive-hooks';
+import type { IKeyboardEvent } from '@office-iss/react-native-win32';
 
 export const TabsContext = React.createContext<TabsContextData>({
   selectedKey: null,
@@ -24,13 +25,16 @@ export const TabsContext = React.createContext<TabsContextData>({
     return;
   },
   tabsItemKeys: [],
+  enabledKeys: [],
   views: null,
+  focusZoneRef: null,
 });
 
 export const Tabs = compose<TabsType>({
   displayName: tabsName,
 
   usePrepareProps: (userProps: TabsProps, useStyling: IUseComposeStyling<TabsType>) => {
+    const focusZoneRef = React.useRef(null);
     const defaultComponentRef = React.useRef(null);
     const {
       label,
@@ -66,6 +70,10 @@ export const Tabs = compose<TabsType>({
     // Stores views to be displayed
     const map = new Map<string, React.ReactNode[]>();
 
+    const pressable = useAsPressable({
+      ...rest,
+    });
+
     const state: TabsState = {
       context: {
         selectedKey: selectedKey ?? data.selectedKey,
@@ -73,6 +81,7 @@ export const Tabs = compose<TabsType>({
         getTabId: onChangeTabId,
         updateSelectedTabsItemRef: onSelectTabsItemRef,
         views: map,
+        focusZoneRef: focusZoneRef,
       },
       info: {
         headersOnly: headersOnly ?? false,
@@ -82,10 +91,42 @@ export const Tabs = compose<TabsType>({
 
     const styleProps = useStyling(userProps, (override: string) => state[override] || userProps[override]);
 
+    const onKeyDown = (ev: IKeyboardEvent) => {
+      if (ev.nativeEvent.key === 'ArrowRight' || ev.nativeEvent.key === 'ArrowLeft') {
+        const length = state.context.enabledKeys.length;
+        const currTabItemIndex = state.context.enabledKeys.findIndex(x => x == state.context.selectedKey)
+        let newCurrTabItemIndex;
+        if (ev.nativeEvent.key === 'ArrowRight') {
+          if (isCircularNavigation || !(currTabItemIndex + 1 == length)) {
+            newCurrTabItemIndex = (currTabItemIndex + 1) % length;
+            state.context.selectedKey = state.context.enabledKeys[newCurrTabItemIndex];
+            data.onKeySelect(state.context.selectedKey);
+          }
+        }
+        if (ev.nativeEvent.key === 'ArrowLeft') {
+          if (isCircularNavigation || !(currTabItemIndex == 0)) {
+            newCurrTabItemIndex = (currTabItemIndex - 1 + length) % length;
+            state.context.selectedKey = state.context.enabledKeys[newCurrTabItemIndex];
+            data.onKeySelect(state.context.selectedKey);
+          }
+        }
+      }
+    };
+
+    if (Platform.OS == 'windows') {
+      const slotProps = mergeSettings<TabsSlotProps>(styleProps, {
+        root: { ref: componentRef, accessibilityLabel: accessibilityLabel, accessibilityRole: 'tablist', ...pressable.props, ...rest},
+        label: { children: label },
+        stack: { focusable: true, ref: focusZoneRef, onKeyDown: onKeyDown},
+      });
+
+      return { slotProps, state };
+    }
+
     const slotProps = mergeSettings<TabsSlotProps>(styleProps, {
       root: { ref: componentRef, accessibilityLabel: accessibilityLabel, accessibilityRole: 'tablist', ...rest },
       label: { children: label },
-      container: { isCircularNavigation: isCircularNavigation, defaultTabbableElement: selectedTabsItemRef },
+      container:{ isCircularNavigation: isCircularNavigation, defaultTabbableElement: selectedTabsItemRef },
     });
 
     return { slotProps, state };
@@ -107,6 +148,15 @@ export const Tabs = compose<TabsType>({
             renderData.state.context.selectedKey = child.props.itemKey;
           }
           return child.props.itemKey;
+        }
+      });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore - TODO, fix typing error
+      renderData.state.context.enabledKeys = React.Children.map(children, (child: React.ReactChild) => {
+        if (React.isValidElement(child)) {
+          if (!child.props.disabled) {
+            return child.props.itemKey;
+          }
         }
       });
     }
@@ -137,8 +187,8 @@ export const Tabs = compose<TabsType>({
   slots: {
     root: View,
     label: Text,
-    container: FocusZone,
-    stack: { slotType: View, filter: filterViewProps },
+    container: Platform.OS !== 'windows' ? FocusZone : React.Fragment,
+    stack: View,
     tabPanel: { slotType: View, filter: filterViewProps },
   },
   styles: {

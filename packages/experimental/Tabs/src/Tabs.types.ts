@@ -37,6 +37,17 @@ export interface TabsContextData {
    ** A Map to for a TabItems corresponding view
    */
   views?: Map<string, React.ReactNode[]> | null;
+
+    /*
+   ** Array of enabled keys in the group
+   */
+   enabledKeys?: string[];
+
+
+  /*
+   ** Reference to the Focus Container
+   */
+   focusZoneRef?: React.RefObject<any> | null;
 }
 
 export interface TabsTokens extends IForegroundColorTokens, FontTokens, IBackgroundColorTokens, IShadowTokens {
@@ -100,6 +111,7 @@ export interface TabsProps extends  Pick<FocusZoneProps, 'isCircularNavigation'>
 export interface TabsInfo {
   headersOnly?: boolean;
   label?: boolean;
+  onKeySelect: (key:string)=> void;
 }
 
 export interface TabsState {
