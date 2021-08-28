@@ -85,7 +85,8 @@ export const Tabs = compose<TabsType>({
         });
       }
 
-      const containerProps = Platform.OS === 'windows' ? {defaultTabbableElement: defaultTabbableElement, isCircularNavigation: isCircularNavigation}: {}
+      const containerProps = Platform.OS === 'windows' ? {defaultTabbableElement: defaultTabbableElement, isCircularNavigation: isCircularNavigation}: {};
+      const stackProps = Platform.OS === 'windows' ? { focusable: true, ref: tabs.state.context.focusZoneRef, onKeyDown: onKeyDown}: {};
       return (
         <TabsContext.Provider
           // Passes in the selected key and a hook function to update the newly selected tabsItem and call the client's onTabsClick callback
@@ -94,7 +95,7 @@ export const Tabs = compose<TabsType>({
           <Slots.root {...mergedProps}>
             {tabs?.state?.info?.label && <Slots.label key="label">{label}</Slots.label>}
             <Slots.container {...containerProps}>
-              <Slots.stack focusable={true} ref={tabs.state.context.focusZoneRef}>{children}</Slots.stack>
+              <Slots.stack {...stackProps} >{children}</Slots.stack>
             </Slots.container>
             <Slots.tabPanel>
               {
