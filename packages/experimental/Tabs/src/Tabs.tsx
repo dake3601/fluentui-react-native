@@ -38,9 +38,6 @@ export const Tabs = compose<TabsType>({
     stack: View,
     tabPanel: View,
   },
-  slotProps:{
-    stack: {focusable: true, onKeyDown: onKeyDown}
-  },
   render: (userProps: TabsProps, useSlots: UseSlots<TabsType>) => {
     const tabs = useTabs(userProps);
     // grab the styled slots

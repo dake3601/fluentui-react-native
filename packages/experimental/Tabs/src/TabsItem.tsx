@@ -41,7 +41,7 @@ export const TabsItem = compose<TabItemType>({
       return (
         <Slots.root {...mergedProps}>
           <Slots.stack>
-            {icon && <Slots.icon {...iconProps} />}
+            {/* {icon && <Slots.icon {...iconProps} />} */}
             {renderContent && (
               <Slots.content key="content" testID={testID}>
                 {containerText}
