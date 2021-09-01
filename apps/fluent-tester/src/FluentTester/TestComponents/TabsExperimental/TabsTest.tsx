@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
-import { Text, Button } from '@fluentui/react-native';
+import { Text } from '@fluentui-react-native/experimental-text';
+import { Button } from '@fluentui-react-native/experimental-button';
 import { Tabs, TabsItem } from '@fluentui-react-native/experimental-tabs';
 import { stackStyle } from '../Common/styles';
 import { TABS_TESTPAGE } from './consts';
@@ -76,7 +77,7 @@ const onTabsClickEvent: React.FunctionComponent = () => {
 
   return (
     <View style={stackStyle}>
-      <Text>Last onTabsClick from: {selectedKey}</Text>
+      <Text>{'Last onTabsClick from:' + selectedKey}</Text>
       <Tabs label="Tabs" onTabsClick={onTabsClick} selectedKey={selectedKey}>
         <TabsItem headerText="Home" itemKey="home_key">
           <Text>Tabs #1</Text>
