@@ -28,7 +28,8 @@ export const defaultTabsItemTokens: TokenSettings<TabsItemTokens, Theme> = (t: T
     hovered: {
       backgroundColor: t.colors.neutralForeground2Hover,
       iconColor: t.colors.buttonHoveredIcon,
-      color: t.colors.neutralForeground2Hover,
+      color: 'buttonTextHovered',
+      fontWeight: 'bold',
       indicatorColor: t.colors.neutralStroke1,
       selected: {
         marginHorizontal: -1,
