@@ -10,16 +10,17 @@ export const stylingSettings: UseStylingOptions<TabsItemProps, TabsItemSlotProps
   slotProps: {
     root: buildProps(
       (tokens: TabsItemTokens, theme: Theme) => ({
+        minHeight: 32,
+        minWidth: 32,
+        borderWidth: 2,
+        borderRadius: 4,
         style: {
           display: 'flex',
           alignItems: 'center',
           flexDirection: 'column',
           alignSelf: 'flex-start',
           justifyContent: 'center',
-          minHeight: 32,
-          minWidth: 32,
-          borderWidth: 2,
-          borderRadius: 4,
+
           ...borderStyles.from(tokens, theme),
         },
       }),

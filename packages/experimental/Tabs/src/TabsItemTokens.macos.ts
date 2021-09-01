@@ -24,6 +24,7 @@ export const defaultTabsItemTokens: TokenSettings<TabsItemTokens, Theme> = (t: T
       borderColor: 'transparent',
       iconColor: t.colors.buttonDisabledIcon,
       indicatorColor: t.colors.transparent,
+      fontWeight: 'normal',
     },
     hovered: {
       backgroundColor: t.colors.neutralForeground2Hover,
