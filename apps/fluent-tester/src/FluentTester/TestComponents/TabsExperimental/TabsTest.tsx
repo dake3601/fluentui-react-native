@@ -12,7 +12,7 @@ import TestSvg from './test.svg';
 const tabs: React.FunctionComponent = () => {
   return (
     <View style={stackStyle}>
-      <Tabs label="Tabs" rtl={true}>
+      <Tabs label="Tabs">
         <TabsItem headerText="Home" itemKey="A">
           <Text>Tabs #1</Text>
         </TabsItem>
@@ -208,6 +208,25 @@ const tabsWithFlexibility: React.FunctionComponent = () => {
   );
 };
 
+
+const rightToLeft: React.FunctionComponent = () => {
+  return (
+    <View style={stackStyle}>
+      <Tabs label="Tabs" rtl={true}>
+        <TabsItem headerText="Home" itemKey="A">
+          <Text>Tabs #1</Text>
+        </TabsItem>
+        <TabsItem headerText="Files" itemKey="B">
+          <Text>Tabs #2</Text>
+        </TabsItem>
+        <TabsItem headerText="Settings" itemKey="C">
+          <Text>Tabs #3</Text>
+        </TabsItem>
+      </Tabs>
+    </View>
+  );
+};
+
 const tabsSections: TestSection[] = [
   {
     name: 'Default Tabs',
@@ -242,6 +261,10 @@ const tabsSections: TestSection[] = [
     name: 'More Flexibility',
     component: tabsWithFlexibility,
   },
+  {
+    name: 'Right to Left',
+    component: rightToLeft,
+  }
 ];
 
 export const TabsExperimentalTest: React.FunctionComponent = () => {
