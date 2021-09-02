@@ -39,7 +39,7 @@ export const Tabs = compose<TabsType>({
     const Slots = useSlots(userProps, layer => tabs.state[layer] || userProps[layer]);
     // now return the handler for finishing render
     return (final: TabsProps, ...children: React.ReactNode[]) => {
-      const { label, rtl, defaultTabbableElement, isCircularNavigation, ...mergedProps } = mergeProps(tabs.props, final); // ...mergedProps
+      const { label, defaultTabbableElement, isCircularNavigation, ...mergedProps } = mergeProps(tabs.props, final); // ...mergedProps
 
       // Populate the tabsItemKeys array
       if (children) {
