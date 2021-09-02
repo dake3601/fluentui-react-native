@@ -64,7 +64,7 @@ export const Tabs = compose<TabsType>({
           <Slots.root {...mergedProps}>
             {tabs?.state?.info?.label && <Slots.label key="label">{label}</Slots.label>}
             <Slots.container defaultTabbableElement={defaultTabbableElement} isCircularNavigation={isCircularNavigation}>
-              <Slots.stack>{rtl ? children.reverse() : children}</Slots.stack>
+              <Slots.stack>{children}</Slots.stack>
             </Slots.container>
             <Slots.tabPanel>
               {

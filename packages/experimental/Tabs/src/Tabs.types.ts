@@ -40,6 +40,11 @@ export interface TabsContextData {
 
 export interface TabsTokens extends IForegroundColorTokens, FontTokens, IBackgroundColorTokens {
   label?: string;
+  flexDirection?: string;
+  alignItems?: string;
+
+  // RTL state for Tabs
+  rtl?: TabsTokens;
 }
 
 export interface TabsProps extends Pick<FocusZoneProps, 'isCircularNavigation'>, ViewProps {
@@ -86,11 +91,13 @@ export interface TabsProps extends Pick<FocusZoneProps, 'isCircularNavigation'>,
   testID?: string;
 
   rtl?: boolean;
+
 }
 
 export interface TabsInfo {
   headersOnly?: boolean;
   label?: boolean;
+  rtl?: boolean;
 }
 
 export interface TabsState {
@@ -98,6 +105,7 @@ export interface TabsState {
   state: {
     context?: TabsContextData;
     info: TabsInfo;
+    rtl: boolean;
   };
 }
 export interface TabsSlotProps {

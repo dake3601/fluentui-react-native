@@ -41,7 +41,6 @@ export const useTabs = (props: TabsProps): TabsState => {
       componentRef: componentRef,
       defaultTabbableElement: selectedTabsItemRef,
       isCircularNavigation: props.isCircularNavigation ?? false,
-      rtl: rtl ?? I18nManager.isRTL
     },
     state: {
       context:{
@@ -55,6 +54,7 @@ export const useTabs = (props: TabsProps): TabsState => {
         headersOnly: props.headersOnly ?? false,
         label: !!props.label,
       },
+      rtl: rtl ?? I18nManager.isRTL
     },
   };
 };
