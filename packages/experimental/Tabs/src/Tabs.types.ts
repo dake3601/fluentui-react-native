@@ -84,6 +84,8 @@ export interface TabsProps extends Pick<FocusZoneProps, 'isCircularNavigation'>,
   defaultTabbableElement?: any;
 
   testID?: string;
+
+  rtl?: boolean;
 }
 
 export interface TabsInfo {

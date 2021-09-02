@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, I18nManager } from 'react-native';
 import { useSelectedKey } from '@fluentui-react-native/interactive-hooks';
 import { TabsProps, TabsState } from './Tabs.types';
 
 export const useTabs = (props: TabsProps): TabsState => {
   // attach the pressable state handlers
   const defaultComponentRef = React.useRef(null);
-  const { componentRef = defaultComponentRef, selectedKey, getTabId, onTabsClick, defaultSelectedKey } = props;
+  const { componentRef = defaultComponentRef, selectedKey, getTabId, onTabsClick, defaultSelectedKey, rtl } = props;
   // const onClickWithFocus = useOnPressWithFocus(componentRef, onSelect);
 
   // const pressable = useAsPressable({ ...rest, onPress: onClickWithFocus });
@@ -41,6 +41,7 @@ export const useTabs = (props: TabsProps): TabsState => {
       componentRef: componentRef,
       defaultTabbableElement: selectedTabsItemRef,
       isCircularNavigation: props.isCircularNavigation ?? false,
+      rtl: rtl ?? I18nManager.isRTL
     },
     state: {
       context:{
