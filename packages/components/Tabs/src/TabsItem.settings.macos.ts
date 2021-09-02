@@ -60,14 +60,13 @@ export const settings: IComposeSettings<TabsItemType> = [
       },
       hovered: {
         tokens: {
-          color: 'buttonTextHovered',
           fontWeight: 'bold',
         },
         _overrides: {
           selected: {
             indicator: {
               style:{
-                marginHorizontal: -1,
+                marginHorizontal: 0,
               },
             },
           },
@@ -75,7 +74,6 @@ export const settings: IComposeSettings<TabsItemType> = [
       },
       selected: {
         tokens: {
-          color: 'buttonTextHovered',
           indicatorColor: 'accentButtonBackground',
           fontWeight: 'bold',
         },

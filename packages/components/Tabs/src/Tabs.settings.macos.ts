@@ -20,18 +20,11 @@ export const settings: IComposeSettings<TabsType> = [
         marginLeft: 4,
       },
     },
-    label: {
-      style: {},
-    },
     stack: {
       style: {
-        // marginLeft: -10,
         marginTop: 6,
         flexDirection: 'row',
       },
-      // tokens: {
-      //   childrenGap: 10,
-      // },
     },
   },
   tabsName,
