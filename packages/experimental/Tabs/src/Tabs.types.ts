@@ -40,8 +40,8 @@ export interface TabsContextData {
 
 export interface TabsTokens extends IForegroundColorTokens, FontTokens, IBackgroundColorTokens {
   label?: string;
-  flexDirection?: string;
-  alignItems?: string;
+  flexDirection?: 'row' | 'row-reverse';
+  alignItems?: 'flex-start' | 'flex-end';
 
   // RTL state for Tabs
   rtl?: TabsTokens;
