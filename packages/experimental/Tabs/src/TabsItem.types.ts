@@ -14,11 +14,15 @@ export interface TabsItemTokens extends FontTokens, IBorderTokens {
    */
   indicatorColor?: string;
 
-   marginHorizontal ?: number;
-   /**
-    * The icon color.
-    */
-   iconColor?: string;
+  /**
+   * The indicator marginHorizontal value.
+   */
+  marginHorizontal?: number;
+
+  /**
+   * The icon color.
+   */
+  iconColor?: string;
 
   /**
    * Source URL or name of the icon to show on the TabsItem.
@@ -148,4 +152,5 @@ export interface TabItemType {
   props: TabsItemProps;
   tokens: TabsItemTokens;
   slotProps: TabsItemSlotProps;
+  state: TabsItemState;
 }

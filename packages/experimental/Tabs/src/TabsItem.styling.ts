@@ -1,59 +1,7 @@
 import { tabsItemName, TabsItemTokens, TabsItemSlotProps, TabsItemProps } from './TabsItem.types';
 import { Theme, UseStylingOptions, buildProps } from '@fluentui-react-native/framework';
 import { borderStyles, fontStyles } from '@fluentui-react-native/tokens';
-import { TokenSettings } from '@fluentui-react-native/use-styling';
-
-export const tabsItemStates: (keyof TabsItemTokens)[] = ['hovered', 'selected', 'focused', 'disabled', 'pressed'];
-
-export const defaultTabsItemTokens: TokenSettings<TabsItemTokens, Theme> = (t: Theme) =>
-  ({
-    backgroundColor: 'transparent',
-    color: t.colors.neutralForeground3Brand,
-    borderColor: 'transparent',
-    iconColor: t.colors.buttonIcon,
-    indicatorColor: t.colors.transparent,
-    variant: 'bodyStandard',
-    minHeight: 32,
-    minWidth: 80,
-    borderWidth: 2,
-    borderRadius: 4,
-
-    disabled: {
-      backgroundColor: t.colors.buttonDisabledBackground,
-      color: t.colors.neutralForegroundDisabled,
-      borderColor: 'transparent',
-      iconColor: t.colors.buttonDisabledIcon,
-      indicatorColor: t.colors.transparent,
-    },
-    hovered: {
-      backgroundColor: t.colors.neutralForeground2Hover,
-      iconColor: t.colors.buttonHoveredIcon,
-      color: t.colors.neutralForeground2Hover,
-      indicatorColor: t.colors.neutralStroke1,
-    },
-    pressed: {
-      color: t.colors.neutralForeground2Pressed,
-      borderColor: 'transparent',
-      iconColor: t.colors.buttonPressedIcon,
-      indicatorColor: t.colors.brandStroke1,
-    },
-    focused: {
-      color: t.colors.neutralForeground1,
-      borderColor: t.colors.neutralForeground1,
-      icon: t.colors.buttonFocusedIcon,
-      borderWidth: 2,
-      borderRadius: 4,
-    },
-    selected: {
-      color: t.colors.neutralForeground1,
-      icon: t.colors.buttonFocusedIcon,
-      indicatorColor: t.colors.brandStroke1,
-      borderColor: 'transparent',
-      variant: 'bodySemibold',
-      iconColor: t.colors.buttonDisabledIcon,
-    },
-  } as TabsItemTokens);
-
+import { defaultTabsItemTokens, tabsItemStates } from './TabsItemTokens';
 
 export const stylingSettings: UseStylingOptions<TabsItemProps, TabsItemSlotProps, TabsItemTokens> = {
   tokens: [defaultTabsItemTokens, tabsItemName],

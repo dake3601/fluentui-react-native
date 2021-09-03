@@ -323,7 +323,7 @@ PODS:
     - React-jsi (= 0.63.37)
   - ReactTestApp-DevSupport (0.7.5)
   - ReactTestApp-Resources (1.0.0-dev)
-  - RNCPicker (1.16.5):
+  - RNCPicker (1.16.7):
     - React-Core
   - RNSVG (12.1.1):
     - React
@@ -485,7 +485,7 @@ SPEC CHECKSUMS:
   ReactCommon: 014dd1ff02eab367fa6676b7b408d1a08893a98d
   ReactTestApp-DevSupport: 84ab1181efc86b93291e97746b58de70016c5340
   ReactTestApp-Resources: 5950ae44720217c6778ff03fb1d906c8fb3ce483
-  RNCPicker: 28e41a58b79cd82cc639391bb99ca1b2489a3ea9
+  RNCPicker: 9865e85857650bbc553c660acc580ff86abd056a
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   Yoga: 77d9987384e26b4aaf3e7a01808838cc2d4304f2
